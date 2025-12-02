@@ -113,4 +113,24 @@ $('<div>Hello</div>').addClass('greeting');        // HTML 字符串
 2. **原型共享**：`jQuery.fn.init.prototype = jQuery.fn` 使得 init 创建的对象可以访问 jQuery 的所有方法
 3. **无需 new**：用户调用 `$()` 时不需要写 `new $()`，工厂内部已经处理了
 4. **多态性**：根据参数类型（DOM元素、选择器、HTML字符串）执行不同的逻辑
+
+
+## 组件复用
+
+```javascript
+import {render,createVnode } from "vue"
+
+const my = {
+    Dialog: {
+        confirm(content){
+            const confirmVnode = createVnode(
+                'div',[createVnode('div',content)]
+            )
+            render(confirmVnode，document.body)
+        }
+    }
+}
+
+my.Dialog.confirm('some content here')
+
 ```
